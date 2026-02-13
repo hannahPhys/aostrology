@@ -1,0 +1,183 @@
+// src/data/nz-towns.js
+export const towns = {
+  Auckland: {
+    lat: -36.85,
+    lon: 174.76,
+    maoriName: "Tāmaki Makaurau",
+    englishName: "Auckland",
+    island: "north_island_coastal",
+  },
+  Wellington: {
+    lat: -41.29,
+    lon: 174.78,
+    maoriName: "Te Whanganui-a-Tara",
+    englishName: "Wellington",
+    island: "north_island_coastal",
+  },
+  Christchurch: {
+    lat: -43.53,
+    lon: 172.63,
+    maoriName: "Ōtautahi",
+    englishName: "Christchurch",
+    island: "south_island_coastal",
+  },
+  Queenstown: {
+    lat: -45.03,
+    lon: 168.66,
+    maoriName: "Tāhuna",
+    englishName: "Queenstown",
+    island: "south_island",
+  },
+  Dunedin: {
+    lat: -45.87,
+    lon: 170.50,
+    maoriName: "Ōtepoti",
+    englishName: "Dunedin",
+    island: "south_island_coastal",
+  },
+  Nelson: {
+    lat: -41.27,
+    lon: 173.28,
+    maoriName: "Whakatū",
+    englishName: "Nelson",
+    island: "south_island_coastal",
+  },
+  Hamilton: {
+    lat: -37.78,
+    lon: 175.28,
+    maoriName: "Kirikiriroa",
+    englishName: "Hamilton",
+    island: "north_island",
+  },
+  Tauranga: {
+    lat: -37.69,
+    lon: 176.17,
+    maoriName: "Tauranga-moana",
+    englishName: "Tauranga",
+    island: "north_island_coastal",
+  },
+  Rotorua: {
+    lat: -38.14,
+    lon: 176.25,
+    maoriName: "Rotorua-nui-a-Kahumatamomoe",
+    englishName: "Rotorua",
+    island: "north_island",
+  },
+  Invercargill: {
+    lat: -46.41,
+    lon: 168.35,
+    maoriName: "Waihōpai",
+    englishName: "Invercargill",
+    island: "south_island_coastal",
+  },
+  Paihia: {
+    lat: -35.28,
+    lon: 174.09,
+    maoriName: "Paihia",
+    englishName: "Paihia",
+    island: "far_north",
+  },
+  Whangarei: {
+    lat: -35.73,
+    lon: 174.32,
+    maoriName: "Whangārei",
+    englishName: "Whangarei",
+    island: "far_north",
+  },
+  Taupō: {
+    lat: -38.69,
+    lon: 176.07,
+    maoriName: "Taupō-nui-a-Tia",
+    englishName: "Taupō",
+    island: "north_island",
+  },
+  NewPlymouth: {
+    lat: -39.06,
+    lon: 174.08,
+    maoriName: "Ngāmotu",
+    englishName: "New Plymouth",
+    island: "taranaki",
+  },
+  Napier: {
+    lat: -39.49,
+    lon: 176.91,
+    maoriName: "Ahuriri",
+    englishName: "Napier",
+    island: "north_island_coastal",
+  },
+  Blenheim: {
+    lat: -41.51,
+    lon: 173.96,
+    maoriName: "Wairau",
+    englishName: "Blenheim",
+    island: "south_island_coastal",
+  },
+  Greymouth: {
+    lat: -42.45,
+    lon: 171.21,
+    maoriName: "Māwhera",
+    englishName: "Greymouth",
+    island: "south_island_west_coast",
+  },
+  Hokitika: {
+    lat: -42.71,
+    lon: 170.97,
+    maoriName: "Hokitika",
+    englishName: "Hokitika",
+    island: "south_island_west_coast",
+  },
+  Alexandra: {
+    lat: -45.27,
+    lon: 169.39,
+    maoriName: "Alexandra",
+    englishName: "Alexandra",
+    island: "south_island",
+  },
+  Wanaka: {
+    lat: -44.70,
+    lon: 169.14,
+    maoriName: "Wanaka",
+    englishName: "Wanaka",
+    island: "south_island",
+  },
+  TeAnau: {
+    lat: -45.41,
+    lon: 167.72,
+    maoriName: "Te Anau",
+    englishName: "Te Anau",
+    island: "south_island",
+  },
+  Kaikōura: {
+    lat: -42.41,
+    lon: 173.68,
+    maoriName: "Kaikōura",
+    englishName: "Kaikōura",
+    island: "south_island_coastal",
+  },
+  Timaru: {
+    lat: -44.40,
+    lon: 171.25,
+    maoriName: "Te Tihi-o-Maru",
+    englishName: "Timaru",
+    island: "south_island_coastal",
+  },
+  Oamaru: {
+    lat: -45.09,
+    lon: 170.97,
+    maoriName: "Oamaru",
+    englishName: "Oamaru",
+    island: "south_island_coastal",
+  },
+};
+
+export function getTownInfo(townName) {
+  const town = towns[townName];
+  if (!town) return null;
+  return { 
+    latitude: town.lat, 
+    longitude: town.lon,
+    maoriName: town.maoriName,
+    englishName: town.englishName,
+    island: town.island 
+  };
+}

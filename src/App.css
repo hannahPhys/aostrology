@@ -1,0 +1,130 @@
+/* Color Variables */
+:root {
+  --color-bg-primary: rgb(187, 198, 138);
+  --color-bg-light: rgb(220, 230, 200);
+  --color-accent-dark: rgb(120, 140, 80);
+  --color-accent-darker: rgb(60, 80, 40);
+  --color-text-primary: rgb(60, 80, 40);
+  --color-text-secondary: rgb(100, 120, 70);
+  --color-text-muted: #999;
+  --color-white: rgba(255, 255, 255, 0.8);
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  background-image: url('src/assets/background.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  background-attachment: fixed;
+  margin: 0;
+  text-transform: lowercase;
+  color: var(--color-text-primary);
+}
+
+#root {
+  max-width: 1280px;
+  padding: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+h1 {
+  margin-top: 0;
+  color: var(--color-text-primary);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding: 0;
+}
+
+/* Form Section */
+.form-section {
+  flex: 0 0 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.form-section label {
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+  text-transform: lowercase;
+}
+
+.form-section input[type="date"],
+.form-section input[type="time"],
+.form-section select {
+  width: 100%;
+  min-width: 250px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  border: 1px solid var(--color-text-muted);
+  color: var(--color-text-secondary);
+  border-radius: 4px;
+  background-color: var(--color-white);
+  padding: 0.5rem;
+}
+
+.form-section button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  background-color: var(--color-accent-dark);
+  color: var(--color-bg-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.form-section button[type="submit"]:hover {
+  background-color: var(--color-accent-darker);
+}
+
+/* Result Section */
+.result-section {
+  flex: 1;
+  display: flex;
+  padding-left: 60px;
+  flex-direction: column;
+  max-width: 500px;
+  margin-top: 0;
+  color: var(--color-text-primary);
+}
+
+.result-section b {
+  color: var(--color-accent-darker);
+  font-weight: bold;
+}
+
+.result-section p {
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.result-section .text-sm {
+  font-size: 0.875rem;
+}
+
+.result-section .italic {
+  font-style: italic;
+}
+
+.result-section .text-yellow-300 {
+  color: var(--color-accent-dark);
+}

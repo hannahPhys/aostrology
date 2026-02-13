@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular background -->
+  <circle cx="256" cy="256" r="256" fill="rgb(187, 200, 138)"/>
+  
+  <!-- Moon crescent (larger and more prominent) -->
+  <circle cx="290" cy="256" r="180" fill="rgb(60, 80, 40)"/>
+  <circle cx="325" cy="256" r="168" fill="rgb(187, 200, 138)"/>
+  
+  <!-- Three small stars (Matariki cluster simplified) -->
+  <circle cx="150" cy="180" r="16" fill="rgb(60, 80, 40)"/>
+  <circle cx="130" cy="220" r="13" fill="rgb(60, 80, 40)"/>
+  <circle cx="170" cy="230" r="11" fill="rgb(60, 80, 40)"/>
+</svg>
