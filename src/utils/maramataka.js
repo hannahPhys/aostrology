@@ -9,13 +9,13 @@ const maramatakaPhases = [
   { day: 5, name: "Okoro", meaning: "hopes and desires" },
   { day: 6, name: "Tamatea-āio", meaning: "the calm of Tamatea" },
   { day: 7, name: "Tamatea-angana", meaning: "strong, obstinate and resilient" },
-  { day: 8, name: "Tamatea-kai-ariki", meaning: "to consume the high born - rip in the ocean" },
+  { day: 8, name: "Tamatea-kai-ariki", meaning: "to consume the high born or a rip in the ocean" },
   { day: 9, name: "Tamatea-tūhāhā", meaning: "stay away" },
   { day: 10, name: "Ariroa", meaning: "clear to see" },
   { day: 11, name: "Huna", meaning: "all is hidden - hard time to hunt - getting brighter" },
   { day: 12, name: "Māwharu", meaning: "a great stirring - activity in nature" },
   { day: 13, name: "Ohua", meaning: "becoming full - ripen" },
-  { day: 14, name: "Atua whakahaehae", meaning: "demon - unproductive" },
+  { day: 14, name: "Atua whakahaehae", meaning: "haehae is the pathway in which te ra travels to visit his summer and winter wives" },
   { day: 15, name: "Ōturu", meaning: "fixed in place - the pillar that fixes the full moon in place" },
   { day: 16, name: "Rakaunui", meaning: "nui meaning big and rakau meaning tree" },
   { day: 17, name: "Rakaumatohi", meaning: "to divide produce - planting and harvesting" },
@@ -202,15 +202,27 @@ export function getMaramatakaPhase(date, lat = -41, lon = 174) {
   const timeDiff = date - newMoonDate;
   let daysSinceNewMoon = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   
+  console.log('Date:', date.toDateString());
+  console.log('New Moon Date:', newMoonDate.toDateString());
+  console.log('Days since new moon:', daysSinceNewMoon);
+  
   // Determine if east or west coast (affects timing by 1 day)
-  // East coast of NZ is roughly lon > 175
   const isEastCoast = lon > 175;
   if (isEastCoast) {
     daysSinceNewMoon = daysSinceNewMoon + 1;
   }
   
-  // The Maramataka day is daysSinceNewMoon + 1 (Whiro is day 1)
-  const maramatakaDay = (daysSinceNewMoon % 31) + 1;
+  // The Maramataka day calculation
+  // Day 0 (same day as new moon) = Whiro (day 1)
+  // Day 1 = Tirea (day 2), etc.
+  let maramatakaDay = daysSinceNewMoon + 1;
+  
+  // Handle wrap-around for lunar cycles longer than 30 days
+  if (maramatakaDay > 30) {
+    maramatakaDay = ((maramatakaDay - 1) % 30) + 1;
+  }
+  
+  console.log('Maramataka Day:', maramatakaDay);
   
   // Handle edge case for 31-day cycle
   if (maramatakaDay === 31) {
@@ -219,6 +231,8 @@ export function getMaramatakaPhase(date, lat = -41, lon = 174) {
   
   // Find matching phase (day 1-30)
   const phase = maramatakaPhases.find(p => p.day === maramatakaDay);
+  
+  console.log('Phase found:', phase);
   
   return phase || { name: "Unknown", meaning: "Phase not found" };
 }
