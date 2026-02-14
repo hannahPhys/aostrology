@@ -9,7 +9,7 @@ function About() {
             <div className="header-with-moon">
                 <h1>about te ao-strology</h1>
                 <img
-                    src="/moongifgreen.gif"
+                    src="/Untitled-5.gif"
                     alt="Moon animation"
                     className="moon-gif"
                 />
