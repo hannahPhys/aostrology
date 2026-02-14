@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import { Link } from 'react-router-dom';
 import { getMaramatakaPhase, getMaoriMonthByBirthDate } from "./utils/maramataka";
 import { getSeasonalMarker } from './utils/seasonalMarkers';
 import { getTownInfo } from "./data/nz-towns";
@@ -43,7 +43,7 @@ function App() {
         return 15; // Full moon (Rakaunui)
       } else if (maramatakaDay <= 30) {
         // Waning: days 17-30 map to images 14-1
-        return 30 - maramatakaDay + 1;
+        return maramatakaDay + 1;
       }
       return 1;
     }
@@ -108,6 +108,12 @@ function App() {
             <br /> <br />
             <button type="submit">Submit</button>
           </form>
+          <div style={{ marginBottom: '1rem' }}>
+            <br />
+            <Link to="/about" className="about-link">
+              learn more about the maramataka
+            </Link>
+          </div>
         </div>
         <div className="result-section">
           {result && (
@@ -135,7 +141,7 @@ function App() {
                   </p>
                 )}
               </div>
-              <img src={result.moonImage} alt={`Moon ${result.moonImage}`} style={{ height: '84px', verticalAlign: 'middle', marginLeft: '8px' }} />
+              <img src={result.moonImage} alt={`Moon ${result.moonImage}`} style={{ height: '160px', verticalAlign: 'middle', marginLeft: '8px' }} />
             </div>
           )}
         </div>

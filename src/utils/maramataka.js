@@ -38,93 +38,93 @@ const mutuwhenua = { day: 31, name: "Mutuwhenua", meaning: "It all comes to an e
 
 // Full 13 Māori months array
 const maramatakaMonths = [
-  { 
-    number: 1, 
-    maoriName: "Tahi o Pipiri (Matahi a Puaka)", 
+  {
+    number: 1,
+    maoriName: "Tahi o Pipiri (Matahi a Puaka)",
     commonName: "Pipiri",
     englishMonth: "June",
     description: "The Māori New Year begins. Pipiri means to cling, come or huddle together in the cold. The stars cluster together in the sky as we huddle together on earth."
   },
-  { 
-    number: 2, 
-    maoriName: "Te Rua o Takurua", 
+  {
+    number: 2,
+    maoriName: "Te Rua o Takurua",
     commonName: "Hōngongoi",
     englishMonth: "July",
     description: "Associated with cold weather. Hōngongoi means to be crouched down due to the cold."
   },
-  { 
-    number: 3, 
-    maoriName: "Te Toru Here o Puna", 
+  {
+    number: 3,
+    maoriName: "Te Toru Here o Puna",
     commonName: "Hereturikōkā",
     englishMonth: "August",
     description: "Signs that winter has passed. Hereturikōkā means your knees are charred from kneeling by the fire."
   },
-  { 
-    number: 4, 
-    maoriName: "Te Whā o Mahuru", 
+  {
+    number: 4,
+    maoriName: "Te Whā o Mahuru",
     commonName: "Mahuru",
     englishMonth: "September",
     description: "The return of life. Pīpīwharauroa and kōekoeā return to Aotearoa to breed."
   },
-  { 
-    number: 5, 
-    maoriName: "Te Rima o Whiringa-ā-Nuku", 
+  {
+    number: 5,
+    maoriName: "Te Rima o Whiringa-ā-Nuku",
     commonName: "Whiringa-ā-Nuku",
     englishMonth: "October",
     description: "Heat in the land. Native birds begin breeding including tui, kiwi, kākā, and ruru."
   },
-  { 
-    number: 6, 
-    maoriName: "Te Ono o Whiringa-ā-Rangi", 
+  {
+    number: 6,
+    maoriName: "Te Ono o Whiringa-ā-Rangi",
     commonName: "Whiringa-ā-Rangi",
     englishMonth: "November",
     description: "Heat in the atmosphere. Warmth of summer is felt, new growth across the land."
   },
-  { 
-    number: 7, 
-    maoriName: "Te Whitu o Hakihea", 
+  {
+    number: 7,
+    maoriName: "Te Whitu o Hakihea",
     commonName: "Hakihea",
     englishMonth: "December",
     description: "Tawa tree is ripe. Pohutukawa first flowers. Hakihea is a star rising just before the sun."
   },
-  { 
-    number: 8, 
-    maoriName: "Te Waru o Rehua", 
+  {
+    number: 8,
+    maoriName: "Te Waru o Rehua",
     commonName: "Kohitātea",
     englishMonth: "January",
     description: "Many insects active - ngā manu o Rehua."
   },
-  { 
-    number: 9, 
-    maoriName: "Te Iwa o Hui-tanguru", 
+  {
+    number: 9,
+    maoriName: "Te Iwa o Hui-tanguru",
     commonName: "Hui-tanguru",
     englishMonth: "February",
     description: "Summer fruits are ripe, including tītoki."
   },
-  { 
-    number: 10, 
-    maoriName: "Te Tekau o Poutūterangi", 
+  {
+    number: 10,
+    maoriName: "Te Tekau o Poutūterangi",
     commonName: "Poutūterangi",
     englishMonth: "March",
     description: "Kumara is ready to be lifted."
   },
-  { 
-    number: 11, 
-    maoriName: "Te Ngahuru mā Tahi o Pāengawhāwhā", 
+  {
+    number: 11,
+    maoriName: "Te Ngahuru mā Tahi o Pāengawhāwhā",
     commonName: "Pāengawhāwhā",
     englishMonth: "April",
     description: "Piharau (lamprey) is caught using noose and trap."
   },
-  { 
-    number: 12, 
-    maoriName: "Te Ngahuru mā Rua o Haratua", 
+  {
+    number: 12,
+    maoriName: "Te Ngahuru mā Rua o Haratua",
     commonName: "Haratua",
     englishMonth: "May",
     description: "Harvest has ended, bounty of the year has been stored."
   },
-  { 
-    number: 13, 
-    maoriName: "Rūhama Tahi Whetūwhenua", 
+  {
+    number: 13,
+    maoriName: "Rūhama Tahi Whetūwhenua",
     commonName: "Muhanui",
     englishMonth: "Intercalary",
     description: "The lazy month - inserted every three years to align the lunar calendar with the seasonal cycle."
@@ -135,19 +135,19 @@ const maramatakaMonths = [
 function findPreviousNewMoon(date, lat, lon) {
   let currentDate = new Date(date);
   let previousPhase = SunCalc.getMoonIllumination(currentDate).phase;
-  
+
   // Go back in time until we find a new moon
   for (let i = 0; i < 60; i++) {
     currentDate.setDate(currentDate.getDate() - 1);
     const currentPhase = SunCalc.getMoonIllumination(currentDate).phase;
-    
+
     // New moon is when phase is very close to 0 or crosses from ~1 to ~0
     if (currentPhase < 0.02 || (previousPhase < 0.1 && currentPhase > 0.9)) {
       return currentDate;
     }
     previousPhase = currentPhase;
   }
-  
+
   return null;
 }
 
@@ -155,12 +155,12 @@ function findPreviousNewMoon(date, lat, lon) {
 function findAllNewMoons(startDate, endDate) {
   const newMoons = [];
   let previousPhase = null;
-  
+
   for (let d = new Date(startDate); d < endDate; d.setDate(d.getDate() + 1)) {
     const currentDate = new Date(d);
     const moonData = SunCalc.getMoonIllumination(currentDate);
     const currentPhase = moonData.phase;
-    
+
     // Detect new moon: phase crosses from high (near 1) to low (near 0)
     if (previousPhase !== null) {
       if ((previousPhase > 0.9 && currentPhase < 0.1) || currentPhase < 0.02) {
@@ -170,7 +170,7 @@ function findAllNewMoons(startDate, endDate) {
     }
     previousPhase = currentPhase;
   }
-  
+
   return newMoons;
 }
 
@@ -180,7 +180,7 @@ function getNewMoonsInMaoriYear(year) {
   // We'll count from June 1st to May 31st of the following year
   const yearStart = new Date(year, 5, 1);  // June 1st
   const yearEnd = new Date(year + 1, 5, 31); // May 31st next year
-  
+
   return findAllNewMoons(yearStart, yearEnd);
 }
 
@@ -193,62 +193,62 @@ export function hasIntercalaryMonth(year) {
 export function getMaramatakaPhase(date, lat = -41, lon = 174) {
   // Find the previous new moon
   const newMoonDate = findPreviousNewMoon(date, lat, lon);
-  
+
   if (!newMoonDate) {
     return { name: "Unknown", meaning: "Could not calculate moon phase" };
   }
-  
+
   // Calculate days since new moon
   const timeDiff = date - newMoonDate;
   let daysSinceNewMoon = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  
+
   console.log('Date:', date.toDateString());
   console.log('New Moon Date:', newMoonDate.toDateString());
   console.log('Days since new moon:', daysSinceNewMoon);
-  
+
   // Determine if east or west coast (affects timing by 1 day)
   const isEastCoast = lon > 175;
   if (isEastCoast) {
     daysSinceNewMoon = daysSinceNewMoon + 1;
   }
-  
+
   // The Maramataka day calculation
   // Day 0 (same day as new moon) = Whiro (day 1)
   // Day 1 = Tirea (day 2), etc.
   let maramatakaDay = daysSinceNewMoon + 1;
-  
+
   // Handle wrap-around for lunar cycles longer than 30 days
   if (maramatakaDay > 30) {
     maramatakaDay = ((maramatakaDay - 1) % 30) + 1;
   }
-  
+
   console.log('Maramataka Day:', maramatakaDay);
-  
+
   // Handle edge case for 31-day cycle
   if (maramatakaDay === 31) {
     return mutuwhenua;
   }
-  
+
   // Find matching phase (day 1-30)
   const phase = maramatakaPhases.find(p => p.day === maramatakaDay);
-  
+
   console.log('Phase found:', phase);
-  
+
   return phase || { name: "Unknown", meaning: "Phase not found" };
 }
 
 export function getMaoriMonthByBirthDate(birthDate) {
   const year = birthDate.getFullYear();
-  
+
   // Get all new moons for this Māori year (June to June)
   const maoriYearStart = new Date(year, 5, 1); // June 1st
   const maoriYearEnd = new Date(year + 1, 5, 31); // May 31st next year
-  
+
   const newMoons = findAllNewMoons(maoriYearStart, maoriYearEnd);
-  
+
   // Check if this is an intercalary year
   const isIntercalaryYear = newMoons.length >= 13;
-  
+
   // Find which lunar month the birth date falls in
   let monthIndex = -1;
   for (let i = 0; i < newMoons.length; i++) {
@@ -258,14 +258,14 @@ export function getMaoriMonthByBirthDate(birthDate) {
       break;
     }
   }
-  
+
   if (monthIndex === -1) {
     // Birth date is before the first new moon of this Māori year
     // Check previous Māori year
     const prevYearStart = new Date(year - 1, 5, 1);
     const prevYearEnd = new Date(year, 5, 31);
     const prevNewMoons = findAllNewMoons(prevYearStart, prevYearEnd);
-    
+
     for (let i = prevNewMoons.length - 1; i >= 0; i--) {
       if (birthDate >= prevNewMoons[i]) {
         monthIndex = i;
@@ -273,24 +273,24 @@ export function getMaoriMonthByBirthDate(birthDate) {
       }
     }
   }
-  
+
   // The Māori year starts with the first new moon after Matariki (around late June)
   // Month 1 is the first month after Matariki
   let monthNumber = monthIndex + 1;
-  
+
   // Wrap if necessary
   if (monthNumber > 13) {
     monthNumber = monthNumber - 13;
   } else if (monthNumber > 12 && !isIntercalaryYear) {
     monthNumber = 1; // Wrap to next year if no intercalary month
   }
-  
+
   // Ensure we're within bounds
   if (monthNumber < 1) monthNumber = 1;
   if (monthNumber > 13) monthNumber = 13;
-  
+
   const month = maramatakaMonths[monthNumber - 1];
-  
+
   return {
     number: month.number,
     maoriName: month.maoriName,

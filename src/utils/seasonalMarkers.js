@@ -34,7 +34,7 @@ export const seasonalMarkers = [
     tohuType: "whenua",
     indicator: "Season of new life"
   },
-  
+
   // SUMMER (November - January)
   {
     name: "Pōhutukawa flowering",
@@ -84,7 +84,7 @@ export const seasonalMarkers = [
     tohuType: "whenua",
     indicator: "Tītoki (karaka) fruit ripe for the north island"
   },
-  
+
   // AUTUMN (March - May)
   {
     name: "Kūmara harvest",
@@ -102,7 +102,7 @@ export const seasonalMarkers = [
     tohuType: "rangi",
     indicator: "Cold weather and frosts starting"
   },
-  
+
   // WINTER (June - July)
   {
     name: "Matariki rises",
@@ -141,7 +141,7 @@ export const seasonalMarkers = [
 // Helper function to get markers for a specific date and location
 export function getSeasonalMarker(date, region) {
   const month = date.getMonth(); // 0-11
-  
+
   // Map Gregorian months to approximate Māori months
   const monthMapping = {
     5: "Pipiri", // June
@@ -157,15 +157,15 @@ export function getSeasonalMarker(date, region) {
     3: "Pāengawhāwhā", // April
     4: "Haratua" // May
   };
-  
+
   const maoriMonth = monthMapping[month];
-  
+
   // Filter markers for this month and region
   const relevantMarkers = seasonalMarkers.filter(marker => {
     const monthMatch = marker.month === maoriMonth;
     const regionMatch = marker.region === "all" || marker.region === region;
     return monthMatch && regionMatch;
   });
-  
+
   return relevantMarkers;
 }

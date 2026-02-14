@@ -1,0 +1,80 @@
+.about-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+}
+
+a:hover {
+    color: var(--color-text-primary);
+}
+
+/* Add to About.css */
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+        padding-bottom: 150px;
+    }
+
+    .about-container h1 {
+        font-size: 2rem;
+    }
+
+    .about-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-container h3 {
+        font-size: 1.2rem;
+    }
+
+    .about-section {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .about-container h2 {
+        font-size: 1.3rem;
+    }
+}
+
+.header-with-moon {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-with-moon h1 {
+    margin: 0;
+}
+
+.moon-gif {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .header-with-moon {
+        flex-direction: column;
+    }
+
+    .moon-gif {
+        width: 120px;
+        height: 120px;
+        margin-top: 1rem;
+    }
+}
