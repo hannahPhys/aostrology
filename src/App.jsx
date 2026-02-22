@@ -5,6 +5,8 @@ import { getSeasonalMarker } from './utils/seasonalMarkers';
 import { getTownInfo } from "./data/nz-towns";
 import { towns } from "./data/nz-towns";
 import SunCalc from "suncalc";
+import { BirthForm } from './components/birthform'
+import { ResultDisplay } from './components/resultsection'
 
 function App() {
   const [town, setTown] = useState('Dunedin')
@@ -49,7 +51,7 @@ function App() {
     }
 
     const moonNumber = getVisualMoonPhase(marama.day || 1);
-    const moonImage = `/moon-phases/moon-${moonNumber}.png`;
+    const moonImage = `${import.meta.env.BASE_URL}moon-phases/moon-${moonNumber}.png`;
 
     setResult({
       maramataka: marama,
@@ -68,46 +70,18 @@ function App() {
       <h1>te ao - strology</h1>
       <div className="app-container">
         <div className="form-section">
-          <form onSubmit={handleSubmit}>
-            <label>
-              Whenua <br />
-              <select value={town} onChange={(e) => setTown(e.target.value)} required>
-                <option value="" disabled>Select a town</option>
-                {Object.keys(towns).map((key) => {
-                  const townObj = towns[key];
-                  const maoriName = townObj.maoriName;
-                  const englishName = townObj.englishName;
-                  let label = key;
-                  if (maoriName && englishName) {
-                    label = `${maoriName} (${englishName})`;
-                  } else if (maoriName) {
-                    label = maoriName;
-                  } else if (englishName) {
-                    label = englishName;
-                  }
-                  return (
-                    <option key={key} value={key}>{label}</option>
-                  );
-                })}
-              </select>
-            </label>
-            <br />
-            <label>
-              Date <br />
-              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-            </label>
-            <br />
-            <label>
-              Time <br />
-              <input type="time" value={time} onChange={(e) => setTime(e.target.value)} disabled={timeUnknown} required={!timeUnknown} />
-            </label><br />
-            <label style={{ marginLeft: '10px' }}>
-              <input type="checkbox" checked={timeUnknown} onChange={(e) => setTimeUnknown(e.target.checked)} />
-              Time unknown
-            </label>
-            <br /> <br />
-            <button type="submit">Submit</button>
-          </form>
+          <BirthForm
+            onSubmit={handleSubmit}
+            towns={towns}
+            town={town}
+            setTown={setTown}
+            date={date}
+            setDate={setDate}
+            time={time}
+            setTime={setTime}
+            timeUnknown={timeUnknown}
+            setTimeUnknown={setTimeUnknown}
+          />
           <div style={{ marginBottom: '1rem' }}>
             <br />
             <Link to="/about" className="about-link">
@@ -115,36 +89,7 @@ function App() {
             </Link>
           </div>
         </div>
-        <div className="result-section">
-          {result && (
-            <div className="mt-6 p-4">
-              <div>
-                <p className="flex items-center">
-                  You were born in the month <b>{result.maoriMonth.commonName}</b>
-                </p>
-                {result.maoriMonth && (
-                  <p>{result.maoriMonth.description}</p>
-                )}
-                {result.markers && result.markers.length > 0 && (
-                  <>
-                    {result.markers.map((marker, index) => (
-                      <p key={index}>{marker.indicator}</p>
-                    ))}
-                  </>
-                )}
-                You were born under the <b>{result.maramataka.name}</b> moon{" "}
-                <p>{result.maramataka.meaning}</p>
-
-                {result.timeUnknown && (
-                  <p className="mt-2 text-sm italic text-yellow-300">
-                    Time unknown - moon phase and Maramataka are approximate.
-                  </p>
-                )}
-              </div>
-              <img src={result.moonImage} alt={`Moon ${result.moonImage}`} style={{ height: '160px', verticalAlign: 'middle', marginLeft: '8px' }} />
-            </div>
-          )}
-        </div>
+        <ResultDisplay result={result} />
       </div>
     </>
   )

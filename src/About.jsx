@@ -9,7 +9,7 @@ function About() {
             <div className="header-with-moon">
                 <h1>about te ao-strology</h1>
                 <img
-                    src="/Untitled-5.gif"
+                    src={`${import.meta.env.BASE_URL}moongifgreen.gif`}
                     alt="Moon animation"
                     className="moon-gif"
                 />
@@ -17,16 +17,30 @@ function About() {
             <section className="about-section">
                 <h2>what is maramataka?</h2>
                 <p>
-                    the maramataka is the traditional māori lunar calendar, a sophisticated system
+                    the maramataka is the traditional māori lunar, solar and environmental calendar,
+                    a system
                     used by our tūpuna (ancestors) to understand the natural world and guide daily life.
-                    unlike the gregorian calendar we use today, the maramataka follows the phases of
-                    te marama (the moon) through approximately 30 nights in each lunar cycle.
+                    in western astrology we see where the stars and moon were at the time of our birth, but
+                    in te ao maori we see what natural cycles we were born into. 
+                    we may also be used to directly translating each month to a maori month but in truth each month 
+                    would begin and at the new moon, whiro. The new year would start when the matariki constellation
+                    would rise in the pre dawn sky during the moon phase tangaroa.
+                </p>
+                <p>
+                    the words marama taka translates to moon almanac. this name was not one of the original
+                    names for the calendar but came about in different ways to be recorded as such.
+                    some of the original names: <br />
+                    ngā pō o te marama - instead of days of the week : nights of the moon <br />
+                    te ta tau o rongo - to count the phases of the moon <br />
+                    rongo ma tāne - sun and moon - lunar solar calendar where rongo is the honorific name for the moon
+                    and tāne is the honorific name for the sun
+                    
                 </p>
                 <p>
                     each night of the moon has its own name, energy, and characteristics. some nights
                     are good for planting, others for fishing, and some are better suited for rest and
                     reflection. the maramataka connects te rangi (the sky), te whenua (the land), and
-                    te moana (the ocean) in a holistic view of time and seasons.
+                    te moana (the ocean) in a holistic view of time and seasons. 
                 </p>
             </section>
 
@@ -58,7 +72,10 @@ function About() {
                     different parts of aotearoa have different tohu relevant to their environment. coastal
                     regions watch for different signs than inland areas, and the north island experiences
                     seasonal changes differently from te waipounamu (the south island). this calculator
-                    incorporates regional differences to give you markers specific to your whenua.
+                    attempts to incorporate regional differences to give you markers specific to your whenua.
+                    the names for the phases of the moon come mainly from dr rangi mātāmua's research on the
+                    maramataka of te waipounamu, but the seasonal markers are drawn from a variety of iwi sources
+                    to reflect the diversity of māori knowledge across the motu (country).
                 </p>
             </section>
 
@@ -103,14 +120,15 @@ function About() {
                     {/* Add your personal bio here */}
                     [your bio goes here - tell people about yourself, your connection to this kaupapa,
                     and what inspired you to create this tool]
+
                 </p>
 
                 <div className="links-section">
                     <h3>connect & explore</h3>
                     <ul>
                         <li><a href="https://your-website.com" target="_blank" rel="noopener noreferrer">personal website</a></li>
-                        <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github</a></li>
-                        <li><a href="https://your-portfolio.com" target="_blank" rel="noopener noreferrer">portfolio</a></li>
+                        <li><a href="https://github.com/hannahPhys/" target="_blank" rel="noopener noreferrer">github</a></li>
+                        <li><a href="https://www.instagram.com/hannahaffogato" target="_blank" rel="noopener noreferrer">instagram</a></li>
                         {/* Add more links as needed */}
                     </ul>
                 </div>
